@@ -9,6 +9,8 @@ services:
       - outside
     ports:
       - "3000:3000"
+    links:
+      - influxdb 
 
   influxdb:
     restart: always
@@ -32,16 +34,15 @@ services:
   telegraf:
     image: telegraf
     container_name: telegraf
+    restart: always                     # Restarts automatically if it crashes
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /sys:/rootfs/sys:ro
-      - /proc:/rootfs/proc:ro
-      - /etc:/rootfs/etc:ro
-    environment:
-      HOST_PROC: /rootfs/proc
-      HOST_SYS: /rootfs/sys
-      HOST_ETC: /rootfs/etc
+    depends_on:						    # Waits until influxdb service is running
+      - influxdb
+    links:								# Connects this service to influxdb service
+      - influxdb
+    ports:								# Maps port 57100 on host to container.
+      - '57000:57000'
     depends_on:
       - influxdb
 
