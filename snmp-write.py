@@ -40,12 +40,17 @@ bucket="xuxing"
 write_api = write_client.write_api(write_options=SYNCHRONOUS)
    
 while True:
-  cpu_utilization = get_cpu_utilization(snmp_community, snmp_host, oid)
-  print(cpu_utilization)
-  point = (
-    Point("cpu_measurement")
-    .tag("host", "10.125.50.20")
-    .field("cpu_utilization", float(cpu_utilization))
-  )
-  write_api.write(bucket=bucket, org="organization", record=point)
-  time.sleep(10) # separate points by 1 second
+  try:
+      
+    cpu_utilization = get_cpu_utilization(snmp_community, snmp_host, oid)
+    print(cpu_utilization)
+    point = (
+        Point("cpu_measurement")
+        .tag("host", "10.125.50.20")
+        .field("cpu_utilization", float(cpu_utilization))
+    )
+    write_api.write(bucket=bucket, org="organization", record=point)
+  except Exception as e:
+    print(f"An error occurred: {e}")
+
+  time.sleep(60) 
