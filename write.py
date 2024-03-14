@@ -1,5 +1,3 @@
-# INFLUXDB_TOKEN=Zt2lpPOocc2PWMLR0uX4_UmUmgJ-s4UsqSgZpzBdSDsfE7MJRqMLvz7Ji7dUWRdvCP24vDweTWJN8oB3PngRkw==
-
 import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
@@ -23,4 +21,4 @@ for value in range(5):
     .field("field1", value)
   )
   write_api.write(bucket=bucket, org="organization", record=point)
-  time.sleep(1) # separate points by 1 second
+  time.sleep(1) 

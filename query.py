@@ -1,6 +1,3 @@
-
-# INFLUXDB_TOKEN=Zt2lpPOocc2PWMLR0uX4_UmUmgJ-s4UsqSgZpzBdSDsfE7MJRqMLvz7Ji7dUWRdvCP24vDweTWJN8oB3PngRkw==
-
 import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
