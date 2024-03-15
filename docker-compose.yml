@@ -34,14 +34,14 @@ services:
   telegraf:
     image: telegraf
     container_name: telegraf
-    restart: always # Restarts automatically if it crashes
+    restart: always
     networks:
       - outside
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    links: # Connects this service to influxdb service
+    links:
       - influxdb
-    ports: # Maps port 57100 on host to container.
+    ports:
       - "57000:57000"
 
 networks:

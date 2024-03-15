@@ -6,7 +6,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 token = 'my-super-secret-auth-token'
 org = "organization"
-url = "http://10.70.79.190:8086"
+url = "http://x.x.x.x:8086"
 
 write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 

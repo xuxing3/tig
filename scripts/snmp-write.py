@@ -23,7 +23,7 @@ def get_cpu_utilization(snmp_community, snmp_host, oid):
             return varBind[1]
         
 snmp_community = 'cisco'
-snmp_host = '10.124.50.20'
+snmp_host = '10.x.x.x'
 oid = '1.3.6.1.4.1.9.9.109.1.1.1.1.7.33'
 
 
@@ -31,7 +31,8 @@ oid = '1.3.6.1.4.1.9.9.109.1.1.1.1.7.33'
 
 token = 'my-super-secret-auth-token'
 org = "organization"
-url = "http://10.70.79.190:8086"
+# Change to your self Server address
+url = "http://x.x.x.x:8086"
 
 write_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
 
@@ -46,7 +47,7 @@ while True:
     print(cpu_utilization)
     point = (
         Point("cpu_measurement")
-        .tag("host", "10.125.50.20")
+        .tag("host", "10.x.x.x")
         .field("cpu_utilization", float(cpu_utilization))
     )
     write_api.write(bucket=bucket, org="organization", record=point)
